@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Little Amazon</title>
+    <link rel="shortcut icon" type="image/png" href="assets/logo.png"/>
+
+    <!-- Bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/account.js"></script>
+
+</head>
+<body>
+<!-- Navigation bar -->
+<nav id="navbar" class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Little Amazon™
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                   data-toggle="dropdown">
+                    Guest
+                </a>
+                <div id="dynamic-dropdown-menu" class="dropdown-menu">
+                    <a class="dropdown-item" href="login.html">Log in</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Page banner -->
+<div id="answer-section" class="jumbotron">
+    <h1 class="h1">Little Amazon™</h1>
+    <input type="text" id="answer-form" class="form-control form-control-lg" placeholder="Type final answer here..."/>
+    <p id="answer-response">Your input will automatically be formatted to <b>all caps</b> and <b>no spaces</b>.</p>
+    <button id="submit-btn" class="btn btn-lg btn-dark" onclick="testNotif()">Submit Answer</button>
+    <hr class="my-4">
+    <i id="puzzle-credits">Puzzle Credits:<br>Brian Ho, LiangJun Tseng, Marrian Liao, Alan Yuan</i>
+</div>
+<!-- Table of Transaction Records -->
+<div id="transaction-records">
+    <h3 class="h3">Transaction Records</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Products</th>
+            <th scope="col">Price</th>
+            <th scope="col">Percent Off</th>
+            <th scope="col">Discounted Price</th>
+            <th scope="col">Free Movie</th>
+        </tr>
+        </thead>
+        <tbody id="transaction-tbody">
+            <!-- Dynamically populated-->
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

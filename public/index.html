@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Little Amazon™</title>
+    <link rel="shortcut icon" type="image/png" href="assets/logo.png"/>
+
+    <!-- Bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+<body>
+<!-- Pop-up dialog for normal purchase -->
+<div id="normal-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">No Discount Found</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>The total comes to <span id="modal-price">???</span>$, with no applicable discount.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-purchase-btn" type="button" class="btn btn-success" data-dismiss="modal">Confirm Purchase</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pop-up dialog for discounted purchase -->
+<div id="discount-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Discount Criteria Matched!</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>The original total is <span id="modal-original-price">???</span>$.
+                    With a <b><span id="modal-discount-percent"></span>%-off</b> discount,
+                    the total comes to <b><span id="modal-discounted-price"></span>$</b>,
+                    with a free copy of <b><span id="modal-free-movie"></span></b>.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="discount-confirm-purchase-btn" type="button" class="btn btn-success confirm-purchase-btn" data-dismiss="modal">Apply Discount &
+                    Confirm Purchase
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pop-up dialog for successful purchase -->
+<div id="purchase-successful-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Purchase successful!</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Keep Shopping</button>
+                <a href="account.html" class="btn btn-secondary" target="_blank">View Transaction Records</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pop-up dialog for purchasing without login -->
+<div id="purchase-failure-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cannot purchase as Guest.</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <a href="login.html" class="btn themed-btn">Log In</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pop-up dialog for logout -->
+<div id="logout-successful-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">You are now logged out.</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                <a href="login.html" class="btn btn-secondary">Log In Another Account</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Navigation bar -->
+<nav id="navbar" class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Little Amazon™
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                   data-toggle="dropdown">
+                    Guest
+                </a>
+                <div id="dynamic-dropdown-menu" class="dropdown-menu">
+                    <a class="dropdown-item" href="login.html">Log in</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Page banner -->
+<div class="jumbotron">
+    <h1>Welcome to Little Amazon™!</h1>
+    <p class="lead">— We've got the weirdest prices & the coolest discounts!</p>
+    <hr class="my-4">
+    <p>We're having a MEGA SALE!!! Buy <b>3 items</b> for <b>1 FREE GIFT</b> and a <b>SPECIAL DISCOUNT</b>! <i>(Terms
+        & conditions apply.)</i></p>
+</div>
+<!-- Products listing and shopping cart -->
+<div class="shopping-area">
+    <div class="shopping-items">
+        <h2 class="row-title">Apparel</h2>
+        <div id="row-apparel" class="item-row"></div>
+        <!-- Dynamically populated-->
+
+        <div class="line-break"></div>
+
+        <h2 class="row-title">House & Living</h2>
+        <div id="row-house-and-living" class="item-row"></div>
+        <!-- Dynamically populated-->
+
+        <div class="line-break"></div>
+
+        <h2 class="row-title">Toys & Collectibles</h2>
+        <div id="row-toys-and-collectibles" class="item-row"></div>
+        <!-- Dynamically populated-->
+
+        <h2 class="row-title">Consumables</h2>
+        <div id="row-consumables" class="item-row"></div>
+        <!-- Dynamically populated-->
+    </div>
+
+    <!-- Shopping cart section -->
+    <div class="shopping-cart">
+        <h3 class="h3 cart-title">Shopping Cart</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody id="shopping-cart-contents">
+            <!-- Dynamically populated-->
+            </tbody>
+        </table>
+        <div class="total-price">Total: <span id="total-price">0.00</span>$</div>
+        <button id="checkout-btn" type="button" class="btn btn-success purchase-btn" style="display: none;">Checkout</button>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

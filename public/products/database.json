@@ -1,0 +1,181 @@
+{
+  "products": {
+    "0": {
+      "name": "Halloween Wizard Robe & Cloak Set",
+      "price": 2.00,
+      "img": "wizard_robe.png",
+      "category": "apparel"
+    },
+    "1": {
+      "name": "Long Range Wide Brim Sable Fedora",
+      "price": 0.86,
+      "img": "fedora.png",
+      "category": "apparel"
+    },
+    "2": {
+      "name": "Wool Deerstalker by Gamble & Gunn",
+      "price": 1.17,
+      "img": "deerstalker.png",
+      "category": "apparel"
+    },
+    "3": {
+      "name": "Vintage-Inspired Silk Nightgown for Children",
+      "price": 2.67,
+      "img": "nightgown.png",
+      "category": "apparel"
+    },
+    "4": {
+      "name": "Black Leather Trench Coat",
+      "price": 3.99,
+      "img": "trench_coat.jpg",
+      "category": "apparel"
+    },
+    "5": {
+      "name": "Hamilton Khaki Pilot Wristwatch",
+      "price": 0.84,
+      "img": "wristwatch.png",
+      "category": "house-and-living"
+    },
+    "6": {
+      "name": "Victorian Sword Cane",
+      "price": 1.16,
+      "img": "cane.png",
+      "category": "house-and-living"
+    },
+    "7": {
+      "name": "Super-Clean™ Sweeping Broom",
+      "price": 0.75,
+      "img": "broom.png",
+      "category": "house-and-living"
+    },
+    "8": {
+      "name": "Decorative Golden Grail",
+      "price": 2.20,
+      "img": "grail.png",
+      "category": "toys-and-collectibles"
+    },
+    "9": {
+      "name": "Vanguard Quality J Hook",
+      "price": 2.00,
+      "img": "hook.png",
+      "category": "house-and-living"
+    },
+    "10": {
+      "name": "Large Wooden Bookshelf",
+      "price": 1.23,
+      "img": "bookshelf.png",
+      "category": "house-and-living"
+    },
+    "11": {
+      "name": "1791 Vintage — Tobacco Pipe",
+      "price": 1.00,
+      "img": "pipe.png",
+      "category": "house-and-living"
+    },
+    "12": {
+      "name": "Assorted Vitamin Pills",
+      "price": 2.51,
+      "img": "pill.png",
+      "category": "consumables"
+    },
+    "13": {
+      "name": "Hi-Watt 9V Battery",
+      "price": 3.86,
+      "img": "battery.png",
+      "category": "consumables"
+    },
+    "14": {
+      "name": "Krazy Glue Advanced Formula Gel",
+      "price": 3.63,
+      "img": "glue.png",
+      "category": "consumables"
+    },
+    "15": {
+      "name": "Military Grade Bullet",
+      "price": 3.50,
+      "img": "bullet.png",
+      "category": "consumables"
+    },
+    "16": {
+      "name": "Lego® Minifigure",
+      "price": 2.51,
+      "img": "lego.png",
+      "category": "toys-and-collectibles"
+    },
+    "17": {
+      "name": "Old-Fashioned Pirate Ship Model",
+      "price": 2.00,
+      "img": "ship.png",
+      "category": "toys-and-collectibles"
+    },
+    "18": {
+      "name": "Brown Leather Whip",
+      "price": 1.23,
+      "img": "whip.png",
+      "category": "toys-and-collectibles"
+    },
+    "19": {
+      "name": "Ram 3500 Dually Toy Truck",
+      "price": 0.43,
+      "img": "truck.png",
+      "category": "toys-and-collectibles"
+    },
+    "20": {
+      "name": "Beautifully Handmade Wooden Magic Wand",
+      "price": 1.25,
+      "img": "wand.png",
+      "category": "toys-and-collectibles"
+    }
+  },
+  "discount_sets": {
+    "0": {
+      "product_index_1": 2,
+      "product_index_2": 6,
+      "product_index_3": 11,
+      "percent_off": 10,
+      "free_movie": "Sherlock Holmes"
+    },
+    "1": {
+      "product_index_1": 5,
+      "product_index_2": 10,
+      "product_index_3": 19,
+      "percent_off": 20,
+      "free_movie": "Interstellar"
+    },
+    "2": {
+      "product_index_1": 1,
+      "product_index_2": 8,
+      "product_index_3": 18,
+      "percent_off": 30,
+      "free_movie": "Indiana Jones and the Last Crusade"
+    },
+    "3": {
+      "product_index_1": 13,
+      "product_index_2": 14,
+      "product_index_3": 16,
+      "percent_off": 40,
+      "free_movie": "The Lego Movie"
+    },
+    "4": {
+      "product_index_1": 0,
+      "product_index_2": 7,
+      "product_index_3": 20,
+      "percent_off": 50,
+      "free_movie": "Harry Potter and the Philosopher's Stone"
+    },
+    "5": {
+      "product_index_1": 4,
+      "product_index_2": 15,
+      "product_index_3": 12,
+      "percent_off": 60,
+      "free_movie": "The Matrix"
+    },
+    "6": {
+      "product_index_1": 3,
+      "product_index_2": 9,
+      "product_index_3": 17,
+      "percent_off": 70,
+      "free_movie": "Peter Pan"
+    }
+  }
+}
